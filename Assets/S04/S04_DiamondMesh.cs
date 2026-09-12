@@ -23,6 +23,9 @@ public class S04_DiamondMesh : MonoBehaviour
             0, 4, 3,
             0, 5, 4,
             0, 2, 5,
+            // 아래쪽 4면 (정점 1 사용)
+            1, 2, 3,
+            1, 3, 4,
             
         };
 
