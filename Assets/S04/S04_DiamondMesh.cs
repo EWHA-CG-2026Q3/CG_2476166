@@ -21,6 +21,8 @@ public class S04_DiamondMesh : MonoBehaviour
             // 위쪽 4면 (정점 0 사용, 허리띠 역순으로 연결)
             0, 3, 2,
             0, 4, 3,
+            0, 5, 4,
+            0, 2, 5,
             
         };
 
