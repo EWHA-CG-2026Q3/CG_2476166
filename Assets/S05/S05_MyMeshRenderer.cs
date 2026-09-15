@@ -27,7 +27,7 @@ public class S05_MyMeshRenderer : MonoBehaviour
         canvasTexture.filterMode = FilterMode.Point;
 
         // 3. 픽셀 채우기 (실습 단계에 따라 아래 호출을 교체)
-        FillVerticalStripes(patternSize, colorA, colorB);
+        FillCheckerboard(patternSize, colorA, colorB);
 
         // 4. 지금까지의 SetPixel 변경 사항을 실제로 텍스처에 반영
         canvasTexture.Apply();
