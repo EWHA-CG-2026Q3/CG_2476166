@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: S06_OpenGL_Material
-  m_Shader: {fileID: 4800000, guid: 43b028e0ff99be945bc65d130883d279, type: 3}
+  m_Shader: {fileID: 4800000, guid: 4c12f40a4a1734a9199c01ccdca0ead9, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
