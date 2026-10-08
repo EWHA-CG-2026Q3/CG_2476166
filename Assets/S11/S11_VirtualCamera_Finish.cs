@@ -64,8 +64,31 @@ public class S11_VirtualCamera_Finish : MonoBehaviour
     {
         Matrix4x4 Tinv = Matrix4x4.Translate(-cam.position);                  // T⁻¹: 이동을 되돌림
         Matrix4x4 Rinv = Matrix4x4.Rotate(Quaternion.Inverse(cam.rotation));  // R⁻¹: 회전을 되돌림
-        return Rinv * Tinv;                                                   // V = R⁻¹ × T⁻¹
+        return MultiplyMatrixMatrix(Rinv, Tinv);                                              // V = R⁻¹ × T⁻¹
     }
+    // 벡터(4개 성분)에 행렬을 곱함: 결과의 각 성분 = A의 해당 행과 v의 내적
+Vector4 MultiplyMatrixVector(Matrix4x4 A, Vector4 v)
+{
+    Vector4 result;
+    result.x = A.m00 * v.x + A.m01 * v.y + A.m02 * v.z + A.m03 * v.w;
+    result.y = A.m10 * v.x + A.m11 * v.y + A.m12 * v.z + A.m13 * v.w;
+    result.z = A.m20 * v.x + A.m21 * v.y + A.m22 * v.z + A.m23 * v.w;
+    result.w = A.m30 * v.x + A.m31 * v.y + A.m32 * v.z + A.m33 * v.w;
+    return result;
+}
+
+// 행렬 × 행렬을 열(column) 단위로 계산: 결과의 n번째 열 = A × (B의 n번째 열)
+Matrix4x4 MultiplyMatrixMatrix(Matrix4x4 A, Matrix4x4 B)
+{
+    Matrix4x4 result = new Matrix4x4();
+    for (int col = 0; col < 4; col++)
+    {
+        Vector4 bCol = B.GetColumn(col);                    // B의 col번째 열
+        Vector4 resultCol = MultiplyMatrixVector(A, bCol);  // A × (B의 col번째 열)
+        result.SetColumn(col, resultCol);                   // 결과의 col번째 열에 채움
+    }
+    return result;
+}
 
     // 카메라(VirtualCamera)가 본 장면을 캔버스에 와이어프레임으로 그림 (매 프레임 호출)
     void DrawSceneOnCanvas()
