@@ -1,5 +1,5 @@
 using UnityEngine;
-
+[ExecuteAlways]
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class S04_DiamondMesh : MonoBehaviour
 {
@@ -36,7 +36,12 @@ public class S04_DiamondMesh : MonoBehaviour
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
 
-        GetComponent<MeshFilter>().mesh = mesh;
-        GetComponent<MeshRenderer>().sharedMaterial = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+               GetComponent<MeshFilter>().sharedMesh = mesh;
+
+        MeshRenderer mr = GetComponent<MeshRenderer>();
+        if (mr.sharedMaterial == null)
+        {
+            mr.sharedMaterial = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+        }
     }
 }

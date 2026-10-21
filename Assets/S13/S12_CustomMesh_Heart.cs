@@ -1,5 +1,5 @@
 using UnityEngine;
-
+[ExecuteAlways]
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class S12_CustomMesh_Heart : MonoBehaviour
 {
@@ -55,8 +55,12 @@ public class S12_CustomMesh_Heart : MonoBehaviour
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
 
-        GetComponent<MeshFilter>().mesh = mesh;
-        Material mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
-mat.SetFloat("_Cull", 0f); // 0 = 앞뒤 양쪽 면 다 그리기
-GetComponent<MeshRenderer>().sharedMaterial = mat;}
-}
+                GetComponent<MeshFilter>().sharedMesh = mesh;
+
+        MeshRenderer mr = GetComponent<MeshRenderer>();
+        if (mr.sharedMaterial == null)
+        {
+            mr.sharedMaterial = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+        }
+    }   
+}       
