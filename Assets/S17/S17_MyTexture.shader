@@ -26,14 +26,15 @@
 
             float4 frag(float2 uv : TEXCOORD0) : SV_Target
             {
-                float2 p = uv;
+                float2 p = uv * 2;
+                //float2 p = uv * 0.25 + float2(0.25, 0.5);
 
                 // 미션 1: 그림의 좌상을 표면 전체에
                 // p = uv * 0.5 + float2(0, 0.5);
 
                 // 미션 2: 그림 전체를 표면의 왼쪽 아래 1/4에
-                // p = uv * 2;
-                // if (p.x > 1 || p.y > 1) return float4(0.8, 0.8, 0.8, 1);
+                 p = uv * 2;
+                 if (p.x > 1 || p.y > 1) return float4(0.8, 0.8, 0.8, 1);
 
                 return tex2D(_BaseMap, p);
             }
