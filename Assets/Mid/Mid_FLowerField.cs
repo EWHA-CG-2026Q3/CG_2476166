@@ -14,6 +14,8 @@ public class Mid_FlowerField : MonoBehaviour
     public Vector2 stemHeight = new Vector2(0.2f, 0.45f);
     public int colorCount = 3;
     public int seed = 11;
+    public Vector3 avoidCenter = new Vector3(-5f, 0f, 3f);
+    public float avoidRadius = 1.8f;
 
     Mesh mesh;
     bool dirty = true;
@@ -48,6 +50,7 @@ public class Mid_FlowerField : MonoBehaviour
             float ang = R(rnd) * Mathf.PI * 2f;
             float rr = Mathf.Sqrt(R(rnd)) * fieldRadius;
             if (rr < clearRadius) continue;
+            if (Vector3.Distance(new Vector3(Mathf.Cos(ang) * rr, 0f, Mathf.Sin(ang) * rr), avoidCenter) < avoidRadius) continue;
 
             Vector3 p = new Vector3(Mathf.Cos(ang) * rr, 0f, Mathf.Sin(ang) * rr);
             float h = Mathf.Lerp(stemHeight.x, stemHeight.y, R(rnd));
